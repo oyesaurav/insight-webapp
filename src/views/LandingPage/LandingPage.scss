@@ -1,0 +1,41 @@
+.insight {
+    font-size: 5vmax;
+    line-height: 2em;
+    margin: 0;
+    padding: 1vw;
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: 900;
+    background: url(https://b.rgbimg.com/users/b/ba/ba1969/600/2dRXRJT.jpg);
+    background-size: 40%;
+    background-position: 50% 50%;
+    -webkit-background-clip: text;
+    color: rgba(0, 0, 0, 0.08);
+    -webkit-animation: zoomout 10s ease 500ms forwards;
+            animation: zoomout 10s ease 500ms forwards;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+  }
+  
+  @-webkit-keyframes zoomout {
+    0% {
+      background-size: 40%;
+    }
+    50% {
+      background-size: 10%;
+    }
+    100% {
+      background-size: 40%;
+    }
+  }
+  
+  @keyframes zoomout {
+    0% {
+      background-size: 40%;
+    }
+    50% {
+      background-size: 10%;
+    }
+    100% {
+      background-size: 40%;
+    }
+  }
