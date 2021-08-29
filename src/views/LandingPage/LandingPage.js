@@ -3,6 +3,7 @@ import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from '@material-ui/core/Grid';
 
 // @material-ui/icons
 
@@ -20,8 +21,9 @@ import Parallax from "components/Parallax/Parallax.js";
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 
 // Sections for this page
-import ProductSection from "./Sections/ProductSection.js";
-// import TeamSection from "./Sections/TeamSection.js";
+// import ProductSection from "./Sections/ProductSection.js";
+import Article from "./Sections/Articles";
+import SectionCarousel from "./Sections/carousel";
 // import WorkSection from "./Sections/WorkSection.js";
 
 const dashboardRoutes = [];
@@ -50,12 +52,7 @@ export default function LandingPage(props) {
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
               <h1 className="insight">INSIGHT</h1>
-              <h4>
-                Every landing page needs a small description after the big bold
-                title, that{"'"}s why we added this text here. Add here all the
-                information that can make you or your product create the first
-                impression.
-              </h4>
+              <h4></h4>
               <br />
               {/* <Button
                 color="danger"
@@ -71,11 +68,18 @@ export default function LandingPage(props) {
           </GridContainer>
         </div>
       </Parallax>
+
       <div className={classNames(classes.main, classes.mainRaised)}>
+         <h2>Featured Arts</h2>
         <div className={classes.container}>
-          <ProductSection />
-          {/* <TeamSection />
-          <WorkSection /> */}
+        <div className={classes.root}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={20}>
+              <SectionCarousel />
+            </Grid>
+          </Grid>
+        </div>
+        <Article />
         </div>
       </div>
       <Footer />
