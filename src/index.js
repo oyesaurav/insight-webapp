@@ -19,7 +19,10 @@ ReactDOM.render(
       <Route path="/landing-page" component={LandingPage} />
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/login-page" component={LoginPage} />
-      <Route path="/" component={LandingPage} />
+      <Route exact path="/" component={LandingPage} />
+      <Route path="*">
+        <h2>Error page</h2>
+      </Route>
     </Switch>
   </Router>,
   document.getElementById("root")

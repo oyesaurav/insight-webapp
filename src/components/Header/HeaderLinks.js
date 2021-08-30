@@ -29,8 +29,8 @@ export default function HeaderLinks(props) {
       <ListItem className={classes.listItem}>
         
       </ListItem>
-      <ListItem className={classes.listItem}>
-      </ListItem>
+
+      {/* Social media routes */}
       <ListItem className={classes.listItem}>
         {/*<Tooltip title="Delete">
           <IconButton aria-label="Delete">
@@ -55,23 +55,6 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Tooltip
-          id="instagram-facebook"
-          title="Follow us on facebook"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Button
-            color="transparent"
-            href="#"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <i className={classes.socialIcons + " fab fa-facebook"} />
-          </Button>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
           id="instagram-tooltip"
           title="Follow us on instagram"
           placement={window.innerWidth > 959 ? "top" : "left"}
@@ -85,6 +68,24 @@ export default function HeaderLinks(props) {
           >
             <i className={classes.socialIcons + " fab fa-instagram"} />
           </Button>
+        </Tooltip>
+      </ListItem>
+
+      
+      {/* Login route */}
+      <ListItem className={classes.listItem}>
+        <Tooltip
+          id="login"
+          title="Login"
+          placement={window.innerWidth > 959 ? "top" : "left-start"}
+          // classes={{ tooltip: classes.tooltip}}
+        >
+          <Button
+            color ="white"
+            className={classes.navLink}
+          >
+            <Link to="login-page">Login</Link>
+          </Button> 
         </Tooltip>
       </ListItem>
     </List>

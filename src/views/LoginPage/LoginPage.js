@@ -22,6 +22,8 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/bg7.jpg";
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles(styles);
 
@@ -142,6 +144,9 @@ export default function LoginPage(props) {
                       Get started
                     </Button>
                   </CardFooter>
+                  <Button simple color="warning" >
+                      <Link to="landing-page">Login later</Link>
+                  </Button>
                 </form>
               </Card>
             </GridItem>
