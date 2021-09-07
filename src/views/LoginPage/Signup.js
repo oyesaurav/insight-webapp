@@ -24,12 +24,12 @@ import styles from "assets/jss/material-kit-react/views/loginPage.js";
 import image from "assets/img/bg7.jpg";
 import { Link } from "react-router-dom";
 
-import { useAuth } from "contexts/AuthContext"
+import { useAuth} from "contexts/AuthContext"
 import { AuthProvider } from "contexts/AuthContext";
 
 const useStyles = makeStyles(styles);
 
-export default function login(props) {
+export default function Signup(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
@@ -37,32 +37,38 @@ export default function login(props) {
   const classes = useStyles();
   const { ...rest } = props;
 
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const { login } = { useAuth }
+  const [email,setEmail] = useState('')
+  const [pass,setPass] = useState('')
+  const [passconfirm,setPassconfirm] = useState('')
+  const {signup, currentUser} ={ useAuth }
   const [error, setError ] = useState('')
   const [loading, setLoading ] = useState(false)
 
   async function handleSubmit (e) {
     e.preventDefault()
 
+    if(pass !== passconfirm)
+    {
+      return setError("Passwords do not match buddy")
+    }
+    
+
     try {
       setError('')
       setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
+      await signup(email, pass)
     } catch {
-      return setError("Failed to sign in")
+      return setError("Failed to create the account")
     }  
     setLoading(false)
   }
-
 
   return (
     <AuthProvider>
       <Header
         absolute
         color="transparent"
-        brand="Material Kit React"
+        brand="INSIGHT"
         rightLinks={<HeaderLinks />}
         {...rest}
       />
@@ -78,18 +84,47 @@ export default function login(props) {
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={4}>
               <Card className={classes[cardAnimaton]}>
-                <form className={classes.form}>
+                <form  className={classes.form}>
                   <CardHeader color="primary" className={classes.cardHeader}>
-                    <h4>Login</h4>
-                    
+                    <h4>Signup</h4>
+                    {/* <div className={classes.socialLine}>
+                      <Button
+                        justIcon
+                        href="#pablo"
+                        target="_blank"
+                        color="transparent"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <i className={"fab fa-twitter"} />
+                      </Button>
+                      <Button
+                        justIcon
+                        href="#pablo"
+                        target="_blank"
+                        color="transparent"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <i className={"fab fa-facebook"} />
+                      </Button>
+                      <Button
+                        justIcon
+                        href="#pablo"
+                        target="_blank"
+                        color="transparent"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <i className={"fab fa-google-plus-g"} />
+                      </Button>
+                    </div> */}
                   </CardHeader>
                   <p className={classes.divider}>Or Be Classical</p>
+                  <p>{currentUser && currentUser.email}</p>
                   <CardBody>
-                   
                     <CustomInput
                       labelText="Email..."
                       id="email"
-                      ref={emailRef}
+                      onInput={ e => setEmail(e.target.value) }
+                      value = {email}
                       formControlProps={{
                         fullWidth: true,
                       }}
@@ -102,11 +137,31 @@ export default function login(props) {
                         ),
                       }}
                     />
-
                     <CustomInput
                       labelText="Password"
                       id="pass"
-                      ref={passwordRef}
+                      onInput={ e => setPass(e.target.value) }
+                      value = {pass}
+                      formControlProps={{
+                        fullWidth: true,
+                      }}
+                      inputProps={{
+                        type: "password",
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Icon className={classes.inputIconsColor}>
+                              lock_outline
+                            </Icon>
+                          </InputAdornment>
+                        ),
+                        autoComplete: "off",
+                      }}
+                    />
+                    <CustomInput
+                      labelText="Confirm Password"
+                      id="passconfirm"
+                      onInput={ e => setPassconfirm(e.target.value) }
+                      value ={passconfirm}
                       formControlProps={{
                         fullWidth: true,
                       }}
@@ -123,20 +178,24 @@ export default function login(props) {
                       }}
                     />
                   </CardBody>
+                  <p>{email}</p>
                   { error && <h4>{error}</h4> }
+                  {/* {JSON.stringify(currentUser)} */}
                   <CardFooter className={classes.cardFooter}>
-                    <Button disabled={loading} simple color="primary" size="lg" type="submit" onClick={handleSubmit}>
+                    <Button disabled={loading} simple color="primary" size="lg" type="submit" onClick={handleSubmit} >
                       Get started
                     </Button>
-                  </CardFooter>
+                  
                   <Button simple color="warning" >
-                      <Link to="Home">Login later</Link>
+                      <Link to="Login">Already have an account ?</Link>
                   </Button>
+                </CardFooter>
                 </form>
               </Card>
             </GridItem>
           </GridContainer>
         </div>
+        
       </div>
     </AuthProvider>
   );

@@ -20,6 +20,8 @@ import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 
+import { AuthProvider } from "contexts/AuthContext";
+
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
@@ -73,6 +75,7 @@ export default function HeaderLinks(props) {
 
       
       {/* Login route */}
+      <AuthProvider>
       <ListItem className={classes.listItem}>
         <Tooltip
           id="login"
@@ -84,10 +87,11 @@ export default function HeaderLinks(props) {
             color ="white"
             className={classes.navLink}
           >
-            <Link to="login-page">Login</Link>
+            <Link to="Signup">Login</Link>
           </Button> 
         </Tooltip>
       </ListItem>
+      </AuthProvider>
     </List>
   );
 }
