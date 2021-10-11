@@ -31,10 +31,13 @@ import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
+import { useLocation } from "react-router";
 
 const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
+const location = useLocation()
+
   const classes = useStyles();
   const { ...rest } = props;
   const imageClasses = classNames(
@@ -47,8 +50,8 @@ export default function ProfilePage(props) {
     <div>
       <Header
         color="transparent"
-        brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
+        brand="INSIGHT"
+        // rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{
           height: 200,
@@ -63,6 +66,7 @@ export default function ProfilePage(props) {
       />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
+          {console.log(location.state.details)}
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
@@ -71,7 +75,7 @@ export default function ProfilePage(props) {
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>Christian Louboutin</h3>
+                    <h3 className={classes.title}>{location.state.details.identifier}</h3>
                     <h6>DESIGNER</h6>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />

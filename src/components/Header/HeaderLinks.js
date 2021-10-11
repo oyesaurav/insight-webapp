@@ -75,7 +75,6 @@ export default function HeaderLinks(props) {
 
       
       {/* Login route */}
-      <AuthProvider>
       <ListItem className={classes.listItem}>
         <Tooltip
           id="login"
@@ -87,11 +86,10 @@ export default function HeaderLinks(props) {
             color ="white"
             className={classes.navLink}
           >
-            <Link to="Signup">Login</Link>
+            <Link to="Sawo">Login</Link>
           </Button> 
         </Tooltip>
       </ListItem>
-      </AuthProvider>
     </List>
   );
 }

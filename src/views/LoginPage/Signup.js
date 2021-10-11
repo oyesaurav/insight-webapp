@@ -40,27 +40,22 @@ export default function Signup(props) {
   const [email,setEmail] = useState('')
   const [pass,setPass] = useState('')
   const [passconfirm,setPassconfirm] = useState('')
-  const {signup, currentUser} ={ useAuth }
+  const {signup, currentUser} = useAuth 
   const [error, setError ] = useState('')
   const [loading, setLoading ] = useState(false)
 
-  async function handleSubmit (e) {
+  function handleSubmit (e) {
     e.preventDefault()
 
     if(pass !== passconfirm)
     {
       return setError("Passwords do not match buddy")
     }
-    
-
-    try {
-      setError('')
+    else {
       setLoading(true)
-      await signup(email, pass)
-    } catch {
-      return setError("Failed to create the account")
-    }  
-    setLoading(false)
+      signup(email, pass)
+    }
+
   }
 
   return (
@@ -178,9 +173,11 @@ export default function Signup(props) {
                       }}
                     />
                   </CardBody>
+
                   <p>{email}</p>
                   { error && <h4>{error}</h4> }
                   {/* {JSON.stringify(currentUser)} */}
+
                   <CardFooter className={classes.cardFooter}>
                     <Button disabled={loading} simple color="primary" size="lg" type="submit" onClick={handleSubmit} >
                       Get started

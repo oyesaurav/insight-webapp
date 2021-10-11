@@ -29,7 +29,7 @@ import { AuthProvider } from "contexts/AuthContext";
 
 const useStyles = makeStyles(styles);
 
-export default function login(props) {
+export default function Login(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
@@ -43,13 +43,13 @@ export default function login(props) {
   const [error, setError ] = useState('')
   const [loading, setLoading ] = useState(false)
 
-  async function handleSubmit (e) {
+  function handleSubmit (e) {
     e.preventDefault()
 
     try {
       setError('')
       setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
+      login(emailRef.current.value, passwordRef.current.value)
     } catch {
       return setError("Failed to sign in")
     }  
@@ -62,7 +62,7 @@ export default function login(props) {
       <Header
         absolute
         color="transparent"
-        brand="Material Kit React"
+        brand="INSIGHT"
         rightLinks={<HeaderLinks />}
         {...rest}
       />
@@ -90,6 +90,7 @@ export default function login(props) {
                       labelText="Email..."
                       id="email"
                       ref={emailRef}
+                      // value={emailRef.current.value}
                       formControlProps={{
                         fullWidth: true,
                       }}
@@ -107,6 +108,7 @@ export default function login(props) {
                       labelText="Password"
                       id="pass"
                       ref={passwordRef}
+                      // value={passwordRef.current.value}
                       formControlProps={{
                         fullWidth: true,
                       }}
